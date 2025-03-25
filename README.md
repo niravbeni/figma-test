@@ -20,6 +20,9 @@ A Next.js application that helps users find their spirit animal through a simple
 ## Getting Started
 
 1. Clone this repository
+   ```
+   git clone https://github.com/niravbeni/figma-test.git
+   ```
 2. Install dependencies:
    ```
    npm install
@@ -32,9 +35,23 @@ A Next.js application that helps users find their spirit animal through a simple
 
 ## Deployment
 
-### Vercel Deployment (Recommended for Next.js)
+### Render Deployment (Recommended)
 
-This application is best deployed on Vercel:
+This repository includes a `render.yaml` file for easy deployment on Render:
+
+1. Fork or clone this repository
+2. Sign up for [Render](https://render.com)
+3. Create a new Web Service and connect your GitHub repository
+4. Render will automatically detect the configuration
+5. Click "Create Web Service"
+
+Alternatively, you can use the "Deploy to Render" button below:
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
+
+### Vercel Deployment
+
+This application can also be deployed on Vercel:
 
 1. Create an account on [Vercel](https://vercel.com)
 2. Connect this GitHub repository

@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Figma Test - Spirit Animal Quiz
+
+A Next.js application that helps users find their spirit animal through a simple quiz.
+
+## Features
+
+- Multi-step quiz flow with persistent state
+- Dynamic color selection
+- Mobile-friendly UI
+- Summary page showing all selections
+
+## Technologies Used
+
+- Next.js 15
+- React
+- TypeScript
+- Tailwind CSS
+- Context API for state management
 
 ## Getting Started
 
-First, run the development server:
+1. Clone this repository
+2. Install dependencies:
+   ```
+   npm install
+   ```
+3. Run the development server:
+   ```
+   npm run dev
+   ```
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Deployment
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Vercel Deployment (Recommended for Next.js)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This application is best deployed on Vercel:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Create an account on [Vercel](https://vercel.com)
+2. Connect this GitHub repository
+3. Deploy with the default settings
 
-## Learn More
+### Alternative Deployment Options
 
-To learn more about Next.js, take a look at the following resources:
+- **Netlify**: Similar to Vercel, supports Next.js applications
+- **GitHub Pages**: Requires additional configuration for Next.js
+- **AWS Amplify**: Provides CI/CD pipeline integration
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Note About Streamlit
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+If you're looking to deploy this on Streamlit Cloud, please note that Streamlit is designed for Python applications, not JavaScript/Next.js applications. You would need to rewrite this application in Python using the Streamlit framework.
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT

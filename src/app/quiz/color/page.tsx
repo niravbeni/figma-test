@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Layout, Button, SelectOption, ProgressBar } from "../../components";
 import { theme } from "../../theme";
 import { useRouter } from "next/navigation";
@@ -11,10 +11,12 @@ export default function ColorQuizPage() {
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const router = useRouter();
   const { answers, setColor, isReady } = useQuiz();
+  const hasSetColorRef = useRef(false);
 
   // Set the selected color from context if available
   useEffect(() => {
-    if (isReady && answers.color) {
+    if (isReady && answers.color && !hasSetColorRef.current) {
+      hasSetColorRef.current = true;
       setSelectedColor(answers.color);
     }
   }, [isReady, answers.color]);

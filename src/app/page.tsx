@@ -3,14 +3,16 @@
 import { Layout, Button } from "./components";
 import Link from "next/link";
 import { useQuiz } from "./context/QuizContext";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export default function Home() {
   const { resetAnswers, isReady } = useQuiz();
+  const hasResetRef = useRef(false);
 
-  // Only reset answers after hydration is complete
+  // Only reset answers after hydration is complete and only once
   useEffect(() => {
-    if (isReady) {
+    if (isReady && !hasResetRef.current) {
+      hasResetRef.current = true;
       resetAnswers();
     }
   }, [isReady, resetAnswers]);

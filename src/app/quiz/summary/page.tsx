@@ -11,15 +11,17 @@ export default function SummaryPage() {
   const router = useRouter();
   const { answers, resetAnswers, isReady } = useQuiz();
   const didNavigateRef = useRef(false);
+  const hasUpdatedRef = useRef(false);
   const [displayAnswers, setDisplayAnswers] = useState({
     month: null as string | null,
     color: null as string | null,
     iceCream: null as string | null,
   });
 
-  // Update display answers when ready
+  // Update display answers when ready, but only once
   useEffect(() => {
-    if (isReady) {
+    if (isReady && !hasUpdatedRef.current) {
+      hasUpdatedRef.current = true;
       setDisplayAnswers(answers);
     }
   }, [isReady, answers]);

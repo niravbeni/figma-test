@@ -1,13 +1,17 @@
 "use client";
 
 import { QuizProvider } from "./context/QuizContext";
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 
 export function Providers({ children }: { children: ReactNode }) {
   const [isMounted, setIsMounted] = useState(false);
+  const hasMountedRef = useRef(false);
 
   useEffect(() => {
-    setIsMounted(true);
+    if (!hasMountedRef.current) {
+      hasMountedRef.current = true;
+      setIsMounted(true);
+    }
   }, []);
 
   // During SSR and the first client render, return a placeholder that matches server output

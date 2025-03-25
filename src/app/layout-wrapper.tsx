@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useEffect, useLayoutEffect, useState } from "react";
+import { ReactNode, useEffect, useLayoutEffect, useState, useRef } from "react";
 
 // Safely use useLayoutEffect with SSR
 const useIsomorphicLayoutEffect =
@@ -8,10 +8,13 @@ const useIsomorphicLayoutEffect =
 
 export function LayoutWrapper({ children }: { children: ReactNode }) {
   const [isMounted, setIsMounted] = useState(false);
+  const hasCleanedUpRef = useRef(false);
 
   // Clean up any data-* attributes added by browser extensions after the first render
   useIsomorphicLayoutEffect(() => {
-    if (typeof document !== "undefined") {
+    if (typeof document !== "undefined" && !hasCleanedUpRef.current) {
+      hasCleanedUpRef.current = true;
+
       // Remove data attributes that might be added by browser extensions
       const bodyElement = document.body;
 
@@ -33,9 +36,10 @@ export function LayoutWrapper({ children }: { children: ReactNode }) {
       attributesToRemove.forEach((attr) => {
         bodyElement.removeAttribute(attr);
       });
-    }
 
-    setIsMounted(true);
+      // Set mounted state only after cleanup
+      setIsMounted(true);
+    }
   }, []);
 
   if (!isMounted) {

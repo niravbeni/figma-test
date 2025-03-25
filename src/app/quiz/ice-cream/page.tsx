@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Layout, Button, SelectOption, ProgressBar } from "../../components";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -10,10 +10,12 @@ export default function IceCreamQuizPage() {
   const [selectedFlavor, setSelectedFlavor] = useState<string | null>(null);
   const router = useRouter();
   const { answers, setIceCream, isReady } = useQuiz();
+  const hasSetFlavorRef = useRef(false);
 
   // Set the selected flavor from context if available
   useEffect(() => {
-    if (isReady && answers.iceCream) {
+    if (isReady && answers.iceCream && !hasSetFlavorRef.current) {
+      hasSetFlavorRef.current = true;
       setSelectedFlavor(answers.iceCream);
     }
   }, [isReady, answers.iceCream]);

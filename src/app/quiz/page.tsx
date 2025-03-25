@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Layout, Button, SelectOption, ProgressBar } from "../components";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -10,10 +10,12 @@ export default function QuizPage() {
   const [selectedMonth, setSelectedMonth] = useState<string | null>(null);
   const router = useRouter();
   const { answers, setMonth, isReady } = useQuiz();
+  const hasSetMonthRef = useRef(false);
 
   // Set the selected month from context if available
   useEffect(() => {
-    if (isReady && answers.month) {
+    if (isReady && answers.month && !hasSetMonthRef.current) {
+      hasSetMonthRef.current = true;
       setSelectedMonth(answers.month);
     }
   }, [isReady, answers.month]);
